@@ -465,4 +465,9 @@ class CodeBlockTest {
     val funSpec = FunSpec.builder("create taco").build()
     assertThat(CodeBlock.of("%N", funSpec).toString()).isEqualTo("`create taco`")
   }
+
+  @Test fun `%N escapes MemberNames`() {
+    val memberName = MemberName("kotlin.collections", "filter non null")
+    assertThat(CodeBlock.of("%N", memberName).toString()).isEqualTo("`filter non null`")
+  }
 }
